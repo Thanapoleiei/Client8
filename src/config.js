@@ -1,5 +1,5 @@
 const config = {
-apiKey: "AIzaSyAAIILh5NHRp4Of9mTqesoz4OUsgUDNQQk",
+    apiKey: "AIzaSyAAIILh5NHRp4Of9mTqesoz4OUsgUDNQQk",
   authDomain: "lab8-f153f.firebaseapp.com",
   databaseURL: "https://lab8-f153f.firebaseio.com",
   projectId: "lab8-f153f",

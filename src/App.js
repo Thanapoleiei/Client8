@@ -3,12 +3,6 @@ import './App.css';
 import {firestore} from './index'
 function App() {
   const [tasks,setTasks] = useState([
-    { 
-      id:1, name: "do homework"
-    },
-    {
-    id:2, name: "write node"
-    }
   ])
   useEffect( () => {
     retriveData()
@@ -16,19 +10,26 @@ function App() {
 
   const retriveData = () => {
     firestore.collection("tasks").onSnapshot( (snapshot) => {
-      console.log(snapshot)
+      console.log(snapshot.docs)
+      let myTask = snapshot.docs.map( d =>{
+        const { id , name } = d.data()
+        console.log(id,name)
+        return {id,name}
+      })
+      setTasks(myTask)
     } )
   }
+
   const renderTask = () => {
     if (tasks && tasks.length)
-    return tasks.map((task,index)=>{
-        return(
-          <li key={index}> {task.id} : {task.name}</li>
-        )
-      })
-  else
-      return (<li>No task</li>)
-    }
+      return tasks.map((task,index)=>{
+          return(
+            <li key={index}> {task.id} : {task.name}</li>
+          )
+        })
+    else
+        return (<li>No task</li>)
+  }
   return (
     <div >
         <h1>Todo</h1>
