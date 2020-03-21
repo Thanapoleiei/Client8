@@ -40,6 +40,7 @@ function App() {
             <li key={index}> 
             {task.id} : {task.name}
             <button onClick={() => deleteTask(task.id)}>Delete</button>
+            <button onClick={() => editTask(task.id)}>Edit</button>
             </li>
           )
         })
@@ -51,7 +52,6 @@ function App() {
         <h1>Todo</h1>
         <input type="text" name="name" onChange={ (e)=> setName(e.target.value)}></input>
         <button onClick={addTask}>Submit</button>
-        <button onClick={() => editTask(task.id)}>Edit</button>
         <ul>{ renderTask() }</ul>
     </div>
   );
