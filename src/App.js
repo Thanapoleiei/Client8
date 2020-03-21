@@ -4,6 +4,9 @@ import {firestore} from './index'
 function App() {
   const [tasks,setTasks] = useState([
   ])
+  const [ name,setName ] = useState([
+
+  ])
   useEffect( () => {
     retriveData()
   },[])
@@ -19,7 +22,10 @@ function App() {
       setTasks(myTask)
     } )
   }
-
+  const addTask = () => {
+    let id = tasks[tasks.length-1].id+1
+    firestore.collection("tasks").doc(id+'').set({id,name})
+  }
   const renderTask = () => {
     if (tasks && tasks.length)
       return tasks.map((task,index)=>{
@@ -33,6 +39,8 @@ function App() {
   return (
     <div >
         <h1>Todo</h1>
+        <input type="text" name="name" onChange={ (e)=> setName(e.target.value)}></input>
+        <button onClick={addTask}>Submit</button>
         <ul>{ renderTask() }</ul>
     </div>
   );
